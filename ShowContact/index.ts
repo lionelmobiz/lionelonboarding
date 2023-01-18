@@ -12,6 +12,8 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     const contact = context.bindings.contact
     
     // is contact an array on and object?
+    // lookup strict equality and javascript falsy values
+    
     if (contact == undefined || contact.length == 0) {
         context.res = {
             status: 404, 
