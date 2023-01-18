@@ -1,0 +1,30 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ],"route": "{id}"
+    },
+ 
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "contact",
+      "databaseName": "practice-db",
+      "collectionName": "contacts",
+      "connectionStringSetting": "lionelonboarding_DOCUMENTDB",
+      "sqlQuery": "SELECT * from c where c.id = {id}"
+    }
+  ],
+  "scriptFile": "../dist/ShowContact/index.js"
+}

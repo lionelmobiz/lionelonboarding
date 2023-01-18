@@ -1,0 +1,29 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "contactsList",
+      "databaseName": "practice-db",
+      "collectionName": "contacts",
+      "connectionStringSetting": "lionelonboarding_DOCUMENTDB",
+      "partitionKey": "clientId"
+    }
+  ],
+  "scriptFile": "../dist/ListContacts/index.js"
+}
