@@ -1,15 +1,14 @@
 {
   "bindings": [
     {
-      "authLevel": "function",
+      "authLevel": "anonymous",
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
       "methods": [
-        "get"
-      ],"route": "{id}"
+        "post"
+      ]
     },
- 
     {
       "type": "http",
       "direction": "out",
@@ -17,13 +16,14 @@
     },
     {
       "type": "cosmosDB",
-      "direction": "in",
+      "direction": "out",
       "name": "contact",
       "databaseName": "practice-db",
       "collectionName": "contacts",
+      "createIfNotExists": true,
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB",
-      "sqlQuery": "SELECT * from c where c.id = {id}"
+      "partitionKey": "clientId"
     }
   ],
-  "scriptFile": "../dist/ShowContact/index.js"
+  "scriptFile": "../dist/CreateContact/index.js"
 }
