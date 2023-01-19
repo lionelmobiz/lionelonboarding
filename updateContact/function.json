@@ -1,16 +1,15 @@
 {
   "bindings": [
     {
-      "authLevel": "function",
+      "authLevel": "anonymous",
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
       "methods": [
-        "get"
+        "put","get"
       ],
-      "route": "getContactById/{clientId}/{id}"
+      "route": "update/{clientId}/{id}"
     },
- 
     {
       "type": "http",
       "direction": "out",
@@ -19,13 +18,22 @@
     {
       "type": "cosmosDB",
       "direction": "in",
-      "name": "contact",
+      "name": "contactToUpdate",
       "databaseName": "practice-db",
       "collectionName": "contacts",
       "sqlQuery": "SELECT * from c where c.clientId = {clientId} and c.id={id}",
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
       
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "contact",
+      "databaseName": "practice-db",
+      "collectionName": "contacts",
+      "createIfNotExists": false,
+      "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
     }
   ],
-  "scriptFile": "../dist/ShowContact/index.js"
+  "scriptFile": "../dist/updateContact/index.js"
 }

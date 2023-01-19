@@ -7,7 +7,8 @@
       "name": "req",
       "methods": [
         "get"
-      ]
+      ],
+      "route": "getContactList/{clientId}"
     },
     {
       "type": "http",
@@ -21,6 +22,7 @@
       "databaseName": "practice-db",
       "collectionName": "contacts",
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB",
+      "sqlQuery": "SELECT * from c where c.clientId = {clientId}",
       "partitionKey": "clientId"
     }
   ],
