@@ -20,9 +20,10 @@
       "type": "cosmosDB",
       "direction": "in",
       "name": "contact",
-      "databaseName": "practice-db",
+      "databaseName": "onboarding",
       "collectionName": "contacts",
-      "sqlQuery": "SELECT * from c where c.clientId = {clientId} and c.id={id}",
+      "Id": "{id}",
+      "PartitionKey": "{clientId}",
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
       
     }

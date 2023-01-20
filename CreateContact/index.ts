@@ -6,7 +6,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     {
         context.bindings.contact = req.body;
         context.res = {
-            status: 201, /* Defaults to 200 */
+            status: 201, 
             body: req.body
         };
     }

@@ -6,32 +6,21 @@ const httpTrigger: AzureFunction = async function (
 ): Promise<void> {
 
     const contact = context.bindings.contactToUpdate
+    // context.log(contact);
     if (!contact) {
         context.res = {
             status: 404, 
-            body: "Document with id "+context.bindingData.id+" not found"
+            body: "Document with id "+context.bindingData.id+" for the client not found "
         };
     }
-    else
-    {
-        if (req.body) 
-        {
-            req.body.id = context.bindingData.id;
-            context.bindings.contact = req.body;
-            context.log(context.bindings.contact);
-            context.res = {
-                status: 200, /* Defaults to 200 */
-                body: req.body
-            };
-        }
-        else {
-            context.res = {
-                status: 400,
-                body: "Request body required."
-            };
-    }  
-        
-    }
+    
+       context.bindings.updateContact = req.body;
+    //    context.log(context.bindings.updateContact);
+       context.res = {
+            status: 201, 
+            body: req.body
+        };
+       
   
          
 };

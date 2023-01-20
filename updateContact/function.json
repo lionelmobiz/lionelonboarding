@@ -11,28 +11,28 @@
       "route": "update/{clientId}/{id}"
     },
     {
+      "name": "contactToUpdate",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "onboarding",
+      "collectionName": "contacts",
+      "Id": "{id}",
+      "PartitionKey": "{clientId}",
+      "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
+    },
+    {
+      "name": "updateContact",
+      "type": "cosmosDB",
+      "databaseName": "onboarding",
+      "collectionName": "contacts",
+      "createIfNotExists": false,
+      "connectionStringSetting": "lionelonboarding_DOCUMENTDB",   
+      "direction": "out"
+    },
+    {
       "type": "http",
       "direction": "out",
       "name": "res"
-    },
-    {
-      "type": "cosmosDB",
-      "direction": "in",
-      "name": "contactToUpdate",
-      "databaseName": "practice-db",
-      "collectionName": "contacts",
-      "sqlQuery": "SELECT * from c where c.clientId = {clientId} and c.id={id}",
-      "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
-      
-    },
-    {
-      "type": "cosmosDB",
-      "direction": "out",
-      "name": "contact",
-      "databaseName": "practice-db",
-      "collectionName": "contacts",
-      "createIfNotExists": false,
-      "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
     }
   ],
   "scriptFile": "../dist/updateContact/index.js"
