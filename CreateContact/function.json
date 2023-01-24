@@ -22,8 +22,7 @@
       "databaseName": "onboarding",
       "collectionName": "contacts",
       "createIfNotExists": true,
-      "connectionStringSetting": "lionelonboarding_DOCUMENTDB",
-      "partitionKey": "clientId"
+      "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
     }
   ],
   "scriptFile": "../dist/CreateContact/index.js"

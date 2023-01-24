@@ -10,6 +10,10 @@ Functions:
 
         CreateContact: [POST] http://localhost:7071/api/CreateContact
 
-        ListContacts: [GET] http://localhost:7071/api/ListContacts
+        docs: [GET] http://localhost:7071/api/docs
 
-        ShowContact: [GET] http://localhost:7071/api/{id}
+        ListContacts: [GET] http://localhost:7071/api/getContactList/{clientId}
+
+        ShowContact: [GET] http://localhost:7071/api/getContactById/{clientId}/{id}
+
+        updateContact: [PUT] http://localhost:7071/api/update/{clientId}/{id}

@@ -47,13 +47,11 @@
               }
             }
           },
-          "422": {
-            "description": "Unprocessable Entity. Validation has failed.",
+          "400": {
+            "description": "invalid phone number",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorsResponse"
-                }
+               
               }
             }
           }
@@ -116,7 +114,6 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ErrorsResponse"
                 }
               }
             }
@@ -171,7 +168,39 @@
       }
     },
 
-    
+    "/api/getContactList/{clientId}": {
+      "get": {
+        "summary": "To get a Contact List For Client",
+        "tags": ["Contact"],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "description": "Id of Client",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          }
+
+          
+        }
+      }
+    },
 
     "/docs": {
       "get": {
@@ -270,46 +299,9 @@
           }
         },
         "required": ["data"]
-      },
-
-
-      "ErrorsResponse": {
-        "properties": {
-          "errors": {
-            "$ref": "#/components/schemas/Errors"
-          }
-        },
-        "required": ["errors"]
-      },
-
-      "Errors": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "status": {
-              "type": "string"
-            },
-            "title": {
-              "type": "string"
-            },
-            "detail": {
-              "type": "string"
-            },
-            "source": {
-              "type": "object",
-              "properties": {
-                "pointer": {
-                  "type": "string"
-                },
-                "parameter": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
       }
+
     }
   }
+  
 }

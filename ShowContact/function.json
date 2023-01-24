@@ -23,9 +23,8 @@
       "databaseName": "onboarding",
       "collectionName": "contacts",
       "Id": "{id}",
-      "PartitionKey": "{clientId}",
+      "clientId": "{clientId}",
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
-      
     }
   ],
   "scriptFile": "../dist/ShowContact/index.js"

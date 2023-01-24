@@ -1,9 +1,7 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 
-const httpTrigger: AzureFunction = async function (
-    context: Context,
-    req: HttpRequest
-): Promise<void> {
+const httpTrigger: AzureFunction = 
+                    async function ( context: Context, req: HttpRequest ): Promise<void> {
  
     const contact = context.bindings.contact
     if (!contact) {
@@ -19,7 +17,6 @@ const httpTrigger: AzureFunction = async function (
             body: context.bindings.contact
         };
     }
-    
 
 };
 
