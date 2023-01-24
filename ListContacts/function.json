@@ -7,7 +7,8 @@
       "name": "req",
       "methods": [
         "get"
-      ]
+      ],
+      "route": "getContactList/{clientId}"
     },
     {
       "type": "http",
@@ -18,10 +19,10 @@
       "type": "cosmosDB",
       "direction": "in",
       "name": "contactsList",
-      "databaseName": "practice-db",
+      "databaseName": "onboarding",
       "collectionName": "contacts",
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB",
-      "partitionKey": "clientId"
+      "PartitionKey": "{clientId}"
     }
   ],
   "scriptFile": "../dist/ListContacts/index.js"

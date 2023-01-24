@@ -1,0 +1,315 @@
+{
+  "openapi": "3.0.0",
+
+  "info": {
+    "title": "Mobiz - Lionel Onboarding Contact API",
+    "description": "This is API documentation of Mobiz's Lionel Onboarding Contact Crud API.",
+    "contact": {
+      "name": "Mobiz",
+      "url": "https://mobiz.co.za",
+      "email": "mike@mobiz.co.za"
+    },
+    "version": "0.0.1"
+  },
+
+  "servers": [
+    {
+      "url": "INSERTED_DYNAMICALLY"
+    }
+  ],
+
+  "paths": {
+
+    "/api/CreateContact": {
+      "post": {
+        "summary": "To register an Contact for a client",
+        "tags": ["Contact"],
+        "requestBody": {
+          "description": "*type* must be 'Contacts'",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contact"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity. Validation has failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/update/{clientId}/{contactId}": {
+      "put": {
+        "summary": "To update a Contact",
+        "tags": ["Contact"],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "description": "Id of Client",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "contactId",
+            "in": "path",
+            "description": "Id of Contact to update",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+
+        "requestBody": {
+          "description": "*type* must be 'Contacts'",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contact"
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bad Request. Contact with same id and underclient not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/api/getContactById/{clientId}/{contactId}": {
+      "get": {
+        "summary": "To get a Contact's details",
+        "tags": ["Contact"],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "description": "Id of Client",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "contactId",
+            "in": "path",
+            "description": "Id of Contact to update",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Document with id <id> not found"
+          }
+        }
+      }
+    },
+
+    
+
+    "/docs": {
+      "get": {
+        "summary": "Get swagger documentation",
+        "tags": ["Documentation"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+
+    "/ping": {
+      "get": {
+        "summary": "Check service is available",
+        "tags": ["Ping"],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+
+    "schemas": {
+      "Contact": {
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["Contacts"]
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "mobileNumber": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255,
+                    "format": "phone number",
+                    "description": "mobile number of contact"
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "description": "first Name of contact"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "Last Name of contact"
+                  },
+                  "emailAddress": {
+                    "type": "string",
+                    "description": "Email of contact",
+                    "format": "email"
+                  },
+                  "city": {
+                    "type": "string",
+                    "description": "city of contact"
+                  },
+                  "country": {
+                    "type": "string",
+                    "description": "country of contact"
+                  },
+                  "dateOfBirth": {
+                    "type": "string",
+                    "description": "Email of contact"
+                  },
+                  "clientId": {
+                    "type": "string",
+                    "description": "client Id to which the contact belongs"
+                  },
+                  "id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255,
+                    "description": "A unique identifier for this Contact in the source system"
+                  }
+                },
+                "required": ["firstName", "mobileNumber", "lastName"]
+              }
+            },
+            "required": ["type", "attributes"]
+          }
+        },
+        "required": ["data"]
+      },
+
+
+      "ErrorsResponse": {
+        "properties": {
+          "errors": {
+            "$ref": "#/components/schemas/Errors"
+          }
+        },
+        "required": ["errors"]
+      },
+
+      "Errors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "detail": {
+              "type": "string"
+            },
+            "source": {
+              "type": "object",
+              "properties": {
+                "pointer": {
+                  "type": "string"
+                },
+                "parameter": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

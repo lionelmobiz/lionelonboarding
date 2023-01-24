@@ -1,0 +1,39 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "put","get"
+      ],
+      "route": "update/{clientId}/{id}"
+    },
+    {
+      "name": "contactToUpdate",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "onboarding",
+      "collectionName": "contacts",
+      "Id": "{id}",
+      "PartitionKey": "{clientId}",
+      "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
+    },
+    {
+      "name": "updateContact",
+      "type": "cosmosDB",
+      "databaseName": "onboarding",
+      "collectionName": "contacts",
+      "createIfNotExists": false,
+      "connectionStringSetting": "lionelonboarding_DOCUMENTDB",   
+      "direction": "out"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }
+  ],
+  "scriptFile": "../dist/updateContact/index.js"
+}

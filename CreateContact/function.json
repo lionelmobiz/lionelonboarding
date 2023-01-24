@@ -14,11 +14,12 @@
       "direction": "out",
       "name": "res"
     },
+    
     {
       "type": "cosmosDB",
       "direction": "out",
       "name": "contact",
-      "databaseName": "practice-db",
+      "databaseName": "onboarding",
       "collectionName": "contacts",
       "createIfNotExists": true,
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB",

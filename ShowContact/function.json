@@ -7,7 +7,8 @@
       "name": "req",
       "methods": [
         "get"
-      ],"route": "{id}"
+      ],
+      "route": "getContactById/{clientId}/{id}"
     },
  
     {
@@ -19,10 +20,12 @@
       "type": "cosmosDB",
       "direction": "in",
       "name": "contact",
-      "databaseName": "practice-db",
+      "databaseName": "onboarding",
       "collectionName": "contacts",
-      "connectionStringSetting": "lionelonboarding_DOCUMENTDB",
-      "sqlQuery": "SELECT * from c where c.id = {id}"
+      "Id": "{id}",
+      "PartitionKey": "{clientId}",
+      "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
+      
     }
   ],
   "scriptFile": "../dist/ShowContact/index.js"
