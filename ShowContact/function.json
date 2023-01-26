@@ -25,7 +25,6 @@
       "Id": "{id}",
       "PartitionKey": "{clientId}",
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
-      
     }
   ],
   "scriptFile": "../dist/ShowContact/index.js"

@@ -5,9 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "methods": [
-        "put","get"
-      ],
+      "methods": ["put"],
       "route": "update/{clientId}/{id}"
     },
     {
@@ -16,8 +14,7 @@
       "direction": "in",
       "databaseName": "onboarding",
       "collectionName": "contacts",
-      "Id": "{id}",
-      "PartitionKey": "{clientId}",
+      "sqlQuery":"SELECT * FROM c WHERE c.id={id} and c.clientId={clientId}",
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
     },
     {

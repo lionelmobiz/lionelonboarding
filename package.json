@@ -10,7 +10,8 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "google-libphonenumber": "^3.2.31"
+    "google-libphonenumber": "^3.2.31",
+    "validate.js": "^0.13.1"
   },
   "devDependencies": {
     "@azure/functions": "^3.0.0",

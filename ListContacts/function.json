@@ -22,7 +22,7 @@
       "databaseName": "onboarding",
       "collectionName": "contacts",
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB",
-      "PartitionKey": "{clientId}"
+      "clientId": "{clientId}"
     }
   ],
   "scriptFile": "../dist/ListContacts/index.js"
