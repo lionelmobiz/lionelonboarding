@@ -14,8 +14,7 @@
       "direction": "in",
       "databaseName": "onboarding",
       "collectionName": "contacts",
-      "Id": "{id}",
-      "PartitionKey": "{clientId}",
+      "sqlQuery":"SELECT * FROM c WHERE c.id={id} and c.clientId={clientId}",
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
     },
     {

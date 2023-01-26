@@ -7,14 +7,22 @@
       "name": "req",
       "methods": [
         "post"
-      ]
+      ], "route": "create/{clientId}/{mobileNumber}"
     },
     {
       "type": "http",
       "direction": "out",
       "name": "res"
     },
-    
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "contactCheck",
+      "databaseName": "onboarding",
+      "collectionName": "contacts",
+      "connectionStringSetting": "lionelonboarding_DOCUMENTDB",
+      "sqlQuery":"SELECT * FROM c WHERE c.mobileNumber={mobileNumber} and c.clientId={clientId}"
+    },
     {
       "type": "cosmosDB",
       "direction": "out",

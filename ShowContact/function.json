@@ -23,7 +23,7 @@
       "databaseName": "onboarding",
       "collectionName": "contacts",
       "Id": "{id}",
-      "clientId": "{clientId}",
+      "PartitionKey": "{clientId}",
       "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
     }
   ],
