@@ -25,11 +25,9 @@ const httpTrigger: AzureFunction = async function (
   const { container } = await database.containers.createIfNotExists({
     id: "contacts",
   });
-  console.log(container.id);
 
   const contactId = context.bindingData.id;
   const clientId = context.bindingData.clientId;
-  console.log("contactId: ", contactId);
 
   await container.item(contactId, clientId).delete();
 };
