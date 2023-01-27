@@ -1,5 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { respondWithSuccess } from "../lib/responders/Responses";
+import { Contact } from "../models/Contact";
 
 const httpTrigger: AzureFunction = async function (
   context: Context,
@@ -29,10 +30,11 @@ const httpTrigger: AzureFunction = async function (
       data: contacts,
     },
   });
+
+  const contactsList: Contact[] = context.bindings.contactsList;
   context.res = {
-    //TODO: map out unecessary data
     status: 200,
-    body: context.bindings.contactsList,
+    body: contactsList,
   };
 };
 

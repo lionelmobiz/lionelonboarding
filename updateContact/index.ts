@@ -51,6 +51,7 @@ const httpTrigger: AzureFunction = async function (
 
       context.bindings.updateContact = contactDocument;
       context.bindings.contact = req.body;
+
       respondWithSuccess(context, {
         type: "contact",
         id: req.body.id,
@@ -71,5 +72,4 @@ const httpTrigger: AzureFunction = async function (
     }
   }
 };
-
 export default httpTrigger;

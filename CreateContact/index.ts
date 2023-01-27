@@ -31,12 +31,11 @@ const httpTrigger: AzureFunction = async function (
 
   var contact: Contact = req.body;
   contact.id = req.body.firstName + context.bindingData.mobileNumber;
-  contact.mobileNumber = context.bindingData.mobileNumber+"";
+  contact.mobileNumber = context.bindingData.mobileNumber + "";
   contact.clientId = context.bindingData.clientId;
- 
 
   var phonenumberValidation = phonenumberValidator(contact.mobileNumber);
-  context.log("phonenumberValidation:",phonenumberValidation)
+  context.log("phonenumberValidation:", phonenumberValidation);
   if (!phonenumberValidation) {
     isContactValid = false;
     errorMessage = "Inavlid phone number provided";

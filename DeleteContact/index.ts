@@ -31,5 +31,4 @@ const httpTrigger: AzureFunction = async function (
 
   await container.item(contactId, clientId).delete();
 };
-
 export default httpTrigger;

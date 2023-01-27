@@ -1,5 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { respondWithSuccess } from "../lib/responders/Responses";
+
 const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
@@ -27,5 +28,4 @@ const httpTrigger: AzureFunction = async function (
     });
   }
 };
-
 export default httpTrigger;
