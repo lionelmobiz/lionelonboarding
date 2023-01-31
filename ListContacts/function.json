@@ -14,15 +14,6 @@
       "type": "http",
       "direction": "out",
       "name": "res"
-    },
-    {
-      "type": "cosmosDB",
-      "direction": "in",
-      "name": "contactsList",
-      "databaseName": "onboarding",
-      "collectionName": "contacts",
-      "connectionStringSetting": "lionelonboarding_DOCUMENTDB",
-      "clientId": "{clientId}"
     }
   ],
   "scriptFile": "../dist/ListContacts/index.js"
