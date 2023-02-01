@@ -7,7 +7,7 @@
       "name": "req",
       "methods": [
         "post"
-      ]
+      ],"route":"contact-create"
     },
     {
       "type": "http",

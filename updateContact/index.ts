@@ -4,10 +4,7 @@ import {
   respondWithSuccess,
   respondWithNotFound,
 } from "../lib/responders/Responses";
-import {
-  phonenumberValidator,
-  contactValidator,
-} from "../lib/validator/Validator";
+import { Validation } from "../lib/validator/Validation";
 import { Contact } from "../models/Contact";
 import _ from "lodash";
 import { contactsRepository } from "../repository/contactsRepository";
@@ -16,27 +13,44 @@ const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
 ): Promise<void> {
+  const contact: Contact = req.body;
+  var errorMessage: string = "";
+
+  const validator = new Validation();
+  await validator.init();
+  const contactValidation = await validator.contactValidator(contact);
+  if (contactValidation.hasError) {
+    respondWithBadRequest(context, contactValidation.message);
+    return;
+  }
+  const phonenumberValidation = await validator.phonenumberValidator(
+    contact.mobileNumber
+  );
+  if (phonenumberValidation.hasError) {
+    respondWithBadRequest(context, phonenumberValidation.message);
+    return;
+  }
+
   const contactDao = new contactsRepository();
   await contactDao.init();
 
-  const contact = await contactDao.findContactById(
+  const contactSearch = await contactDao.findContactById(
     context.bindingData.id,
     context.bindingData.clientId
   );
-  if (!contact) {
+  if (!contactSearch) {
     respondWithNotFound(
       context,
-      "Document with id " + context.bindingData.id + 
-      " for Client with id " + context.bindingData.clientId + " not found"
+      "Document with id " +
+        context.bindingData.id +
+        " for Client with id " +
+        context.bindingData.clientId +
+        " not found"
     );
   } else {
-    req.body.id=context.bindingData.id;
-    req.body.clientId=context.bindingData.clientId;
-   await contactDao.update(
-      context.bindingData.id,
-      req.body,
-      context.bindingData.clientId
-    );
+    contact.id = context.bindingData.id;
+    contact.clientId = context.bindingData.clientId;
+    await contactDao.update(contact.id, contact, contact.clientId);
     respondWithSuccess(context, {
       type: "contact",
       id: contact.id,

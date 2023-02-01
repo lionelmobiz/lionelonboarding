@@ -7,7 +7,7 @@
       "name": "req",
       "methods": [
         "delete"
-      ],"route": "delete/{id}/{clientId}"
+      ],"route": "contact-delete/{clientId}/{id}"
     },
     {
       "type": "http",
