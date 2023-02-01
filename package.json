@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "google-libphonenumber": "^3.2.31",
+    "lodash": "^4.17.21",
     "validate.js": "^0.13.1"
   },
   "devDependencies": {
     "@azure/functions": "^3.0.0",
+    "@types/lodash": "^4.14.191",
     "@types/node": "16.x",
     "typescript": "^4.0.0"
   }

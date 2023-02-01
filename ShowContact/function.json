@@ -15,16 +15,6 @@
       "type": "http",
       "direction": "out",
       "name": "res"
-    },
-    {
-      "type": "cosmosDB",
-      "direction": "in",
-      "name": "contact",
-      "databaseName": "onboarding",
-      "collectionName": "contacts",
-      "Id": "{id}",
-      "PartitionKey": "{clientId}",
-      "connectionStringSetting": "lionelonboarding_DOCUMENTDB"
     }
   ],
   "scriptFile": "../dist/ShowContact/index.js"
