@@ -14,7 +14,7 @@ const httpTrigger: AzureFunction = async function (
     context.bindingData.clientId
   );
   let contactsSearch: Array<Contact> = documents.resources;
-  const contactResponse = _.map(contactsSearch, (contact) =>
+  const attributes = _.map(contactsSearch, (contact) =>
     _.pick(contact, [
       "id",
       "mobileNumber",
@@ -27,13 +27,11 @@ const httpTrigger: AzureFunction = async function (
       "clientId",
     ])
   );
-  context.log("contactResponse: ", contactResponse);
+  context.log("contactResponse: ", attributes);
   respondWithSuccess(context, {
     type: "contact",
     clientId: context.bindingData.clientId,
-    attributes: {
-      data: contactResponse,
-    },
+    attributes,
   });
 };
 

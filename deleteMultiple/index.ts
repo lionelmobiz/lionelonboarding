@@ -9,24 +9,17 @@ const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
 ): Promise<void> {
-  const contactId = context.bindingData.id;
+  context.log("contacts To Delete: ", req.body.contactIds);
   const clientId = context.bindingData.clientId;
   const contactDao = new contactsRepository();
   await contactDao.init();
-
-  const contactSearch = await contactDao.findContactById(contactId, clientId);
-  if (!contactSearch) {
-    respondWithNotFound(
-      context,
-      "Document with id " +
-        contactId +
-        " for Client with id " +
-        clientId +
-        " not found"
-    );
-  } else {
-    const contactDelete =await contactDao.deleteContact(contactId, clientId);
-    respondWithSuccessNoContent(context);
+  const contactsToDelete: Array<any> = req.body.contactIds;
+  context.log("contacts To Delete: ",contactsToDelete)
+  context.log("contactsToDelete: ",contactsToDelete);
+  for (let i = 0; i < contactsToDelete.length; i++) {
+    await contactDao.deleteContact(contactsToDelete[i], clientId);
   }
+  respondWithSuccessNoContent(context);
 };
+
 export default httpTrigger;

@@ -7,7 +7,15 @@ export function respondWithSuccess(
 ): void {
   context.res = {
     status: status,
-    body: { data: data },
+    body:  data ,
+  };
+}
+export function respondWithSuccessNoContent(
+  context: Context,
+  status = 204
+): void {
+  context.res = {
+    status:status
   };
 }
 
@@ -17,7 +25,7 @@ export function respondWithCreated(
 ): void {
   context.res = {
     status: 201,
-    body: { data: data },
+    body: data ,
   };
 }
 
@@ -27,7 +35,7 @@ export function respondWithNotFound(
 ): void {
   context.res = {
     status: 404,
-    body: { data: data },
+    body: data ,
   };
 }
 
@@ -37,6 +45,6 @@ export function respondWithBadRequest(
 ): void {
   context.res = {
     status: 400,
-    body: { data: data },
+    body:  data 
   };
 }

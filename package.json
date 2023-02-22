@@ -12,6 +12,8 @@
   "dependencies": {
     "google-libphonenumber": "^3.2.31",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "uuid": "^9.0.0",
     "validate.js": "^0.13.1"
   },
   "devDependencies": {

@@ -7,7 +7,8 @@
       "name": "req",
       "methods": [
         "post"
-      ],"route":"contact-create"
+      ],
+      "route": "contact-delete-multiple/{clientId}"
     },
     {
       "type": "http",
@@ -15,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/CreateContact/index.js"
+  "scriptFile": "../dist/deleteMultiple/index.js"
 }
