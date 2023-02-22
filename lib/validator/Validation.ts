@@ -6,19 +6,31 @@ export class Validation {
   response: Response;
   contact: Contact;
   phoneUtil: any;
+  PNF: any;
   validatorConstraints: any;
   constructor() {
     this.phoneUtil = null;
     this.validatorConstraints = null;
     this.response = this.response;
+    this.PNF= null;
   }
 
   async init(): Promise<void> {
     const googleLibPhoneNumber =
       require("google-libphonenumber").PhoneNumberUtil.getInstance();
     this.phoneUtil = googleLibPhoneNumber;
+     this.PNF = require('google-libphonenumber').PhoneNumberFormat
     const constraints = await this.initConstraints();
     this.validatorConstraints = constraints;
+  }
+
+  async formatPhoneNumberE164(phonenumber:string): Promise<string>{
+    const numberRawInput = this.phoneUtil.parseAndKeepRawInput(
+      phonenumber + "",
+      "US"
+    )
+    console.log(this.phoneUtil.format(numberRawInput, this.PNF.E164));
+    return this.phoneUtil.format(numberRawInput, this.PNF.E164);
   }
 
   async initConstraints(): Promise<any> {
@@ -69,7 +81,7 @@ export class Validation {
     } catch (error) {
       this.response = {
         status: "failed",
-        message: "Invalid number "+error,
+        message: "Invalid number " + error,
         hasError: true,
       };
       return this.response;

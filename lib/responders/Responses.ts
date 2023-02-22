@@ -45,6 +45,6 @@ export function respondWithBadRequest(
 ): void {
   context.res = {
     status: 400,
-    body:  data ,
+    body:  data 
   };
 }
